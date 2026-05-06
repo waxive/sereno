@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SERENO — Cuidado Íntimo Masculino</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --negro: #0a0a0a;
+    --negro-suave: #111111;
+    --negro-medio: #1a1a1a;
+    --azul-oscuro: #0d1b2a;
+    --azul: #1a3a5c;
+    --azul-medio: #1e4d7b;
+    --azul-claro: #2563a8;
+    --dorado: #c9a84c;
+    --dorado-claro: #e8c97e;
+    --dorado-brillante: #f0d898;
+    --blanco: #f5f0e8;
+    --gris: #8a8a8a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--negro);
+    color: var(--blanco);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ===== PARTÍCULAS DORADAS ===== */
+  .particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: var(--dorado);
+    border-radius: 50%;
+    opacity: 0;
+    animation: float-particle linear infinite;
+  }
+  @keyframes float-particle {
+    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.3; }
+    100% { transform: translateY(-10vh) translateX(30px); opacity: 0; }
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: var(--dorado);
+    text-transform: uppercase;
+  }
+  .logo span {
+    display: block;
+    font-size: 0.5rem;
+    letter-spacing: 8px;
+    color: var(--gris);
+    margin-top: -4px;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+  }
+  nav ul a {
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: all 0.3s;
+  }
+  nav ul a:hover { opacity: 1; color: var(--dorado); }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--negro) 0%, var(--azul-oscuro) 50%, var(--negro) 100%);
+  }
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(30,77,123,0.3) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 24px;
+    animation: fade-up 1.2s ease forwards;
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--dorado);
+    color: var(--dorado);
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+    padding: 6px 20px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    animation: fade-up 1s 0.2s ease both;
+  }
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 600;
+    line-height: 1.05;
+    margin-bottom: 8px;
+    animation: fade-up 1s 0.4s ease both;
+  }
+  .hero-headline .gold { color: var(--dorado); font-style: italic; }
+  .hero-headline .blue { color: #4a9eff; }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(245,240,232,0.6);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    animation: fade-up 1s 0.5s ease both;
+  }
+  .hero-promise {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--dorado-claro);
+    margin-bottom: 48px;
+    text-transform: uppercase;
+    animation: fade-up 1s 0.6s ease both;
+  }
+  .cta-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--dorado) 0%, var(--dorado-brillante) 50%, var(--dorado) 100%);
+    color: var(--negro);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 18px 48px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+    animation: fade-up 1s 0.8s ease both;
+    cursor: pointer;
+    border: none;
+  }
+  .cta-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+  }
+  .cta-primary:hover::before { left: 100%; }
+  .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 40px rgba(201,168,76,0.4); }
+  .hero-price-note {
+    margin-top: 20px;
+    font-size: 0.7rem;
+    color: var(--gris);
+    letter-spacing: 1px;
+    animation: fade-up 1s 1s ease both;
+  }
+  .hero-price-note strong { color: var(--dorado); }
+
+  /* ===== AGITACIÓN — PROBLEMAS ===== */
+  .agitacion {
+    padding: 100px 40px;
+    background: linear-gradient(to bottom, var(--negro), var(--azul-oscuro));
+    position: relative;
+  }
+  .section-label {
+    text-align: center;
+    font-size: 0.6rem;
+    letter-spacing: 5px;
+    color: var(--dorado);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .section-title .gold { color: var(--dorado); }
+  .section-desc {
+    text-align: center;
+    color: rgba(245,240,232,0.55);
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    max-width: 560px;
+    margin: 0 auto 60px;
+    line-height: 1.8;
+  }
+  .problemas-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .problema-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 36px 28px;
+    position: relative;
+    transition: all 0.4s;
+    cursor: default;
+  }
+  .problema-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--dorado);
+    transition: height 0.4s;
+  }
+  .problema-card:hover::before { height: 100%; }
+  .problema-card:hover {
+    background: rgba(201,168,76,0.05);
+    border-color: rgba(201,168,76,0.4);
+    transform: translateX(4px);
+  }
+  .problema-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .problema-card h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    color: var(--blanco);
+  }
+  .problema-card p {
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.55);
+    line-height: 1.7;
+  }
+
+  /* ===== EMPATÍA ===== */
+  .empatia {
+    padding: 100px 40px;
+    background: var(--azul-oscuro);
+    position: relative;
+    overflow: hidden;
+  }
+  .empatia-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .empatia-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--blanco);
+    margin-bottom: 32px;
+  }
+  .empatia-quote .highlight {
+    color: var(--dorado);
+    font-weight: 600;
+  }
+  .empatia-author {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--gris);
+    text-transform: uppercase;
+  }
+  .empatia-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--dorado);
+    margin: 24px auto;
+  }
+
+  /* ===== SOLUCIÓN ===== */
+  .solucion {
+    padding: 100px 40px;
+    background: linear-gradient(to bottom, var(--azul-oscuro), var(--negro));
+  }
+  .solucion-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .modulos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+  .modulo-card {
+    background: linear-gradient(135deg, rgba(26,58,92,0.5) 0%, rgba(10,10,10,0.8) 100%);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 32px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+  }
+  .modulo-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--dorado), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
+  .modulo-card:hover::after { transform: scaleX(1); }
+  .modulo-card:hover { border-color: rgba(201,168,76,0.5); transform: translateY(-4px); }
+  .modulo-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    color: rgba(201,168,76,0.2);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .modulo-card h3 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: var(--dorado);
+  }
+  .modulo-card p {
+    font-size: 0.75rem;
+    color: rgba(245,240,232,0.55);
+    line-height: 1.7;
+  }
+
+  /* ===== CAJA SERENO — PRECIO ===== */
+  .precio-section {
+    padding: 100px 40px;
+    background: var(--negro);
+    position: relative;
+  }
+  .precio-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+  .caja-container {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .caja-card {
+    background: linear-gradient(145deg, var(--azul-oscuro) 0%, var(--negro-medio) 100%);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .caja-card::before {
+    content: 'SERENO';
+    position: absolute;
+    top: -20px; right: -20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8rem;
+    font-weight: 700;
+    color: rgba(201,168,76,0.04);
+    letter-spacing: 8px;
+    pointer-events: none;
+  }
+  .caja-badge-top {
+    display: inline-block;
+    background: var(--dorado);
+    color: var(--negro);
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    padding: 6px 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+  .caja-nombre {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--dorado);
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+  .caja-tagline {
+    font-size: 0.75rem;
+    color: rgba(245,240,232,0.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+  .caja-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+    text-align: left;
+  }
+  .caja-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .caja-item-dot {
+    width: 6px; height: 6px;
+    background: var(--dorado);
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .caja-item-text {
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.75);
+    line-height: 1.5;
+  }
+  .caja-item-text strong { color: var(--blanco); }
+  .precio-display {
+    margin-bottom: 32px;
+  }
+  .precio-desde {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    color: var(--gris);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .precio-numero {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 700;
+    color: var(--dorado);
+    line-height: 1;
+  }
+  .precio-numero sup {
+    font-size: 40%;
+    vertical-align: super;
+    font-weight: 300;
+  }
+  .precio-por {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--gris);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .cuenta-regresiva {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 32px 0;
+  }
+  .cuenta-item {
+    text-align: center;
+  }
+  .cuenta-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dorado);
+    line-height: 1;
+    display: block;
+  }
+  .cuenta-label {
+    font-size: 0.55rem;
+    letter-spacing: 2px;
+    color: var(--gris);
+    text-transform: uppercase;
+  }
+  .cuenta-sep {
+    font-size: 2rem;
+    color: var(--dorado);
+    align-self: center;
+    padding-bottom: 20px;
+    opacity: 0.4;
+  }
+  .garantia-note {
+    font-size: 0.7rem;
+    color: var(--gris);
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .garantia-note::before { content: '🛡️'; }
+
+  /* ===== PRUEBA SOCIAL — RESEÑAS ===== */
+  .resenas {
+    padding: 100px 40px;
+    background: linear-gradient(to bottom, var(--negro), var(--azul-oscuro));
+  }
+  .resenas-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .resena-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 36px 32px;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .resena-card:hover {
+    border-color: rgba(201,168,76,0.35);
+    background: rgba(201,168,76,0.04);
+    transform: translateY(-4px);
+  }
+  .resena-stars {
+    color: var(--dorado);
+    font-size: 1rem;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+  }
+  .resena-texto {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--blanco);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .resena-divider {
+    width: 30px;
+    height: 1px;
+    background: var(--dorado);
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+  .resena-autor {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .resena-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--azul-medio), var(--azul-oscuro));
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+  .resena-nombre {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--blanco);
+    margin-bottom: 2px;
+  }
+  .resena-info {
+    font-size: 0.65rem;
+    color: var(--gris);
+    letter-spacing: 1px;
+  }
+  .resena-verified {
+    margin-left: auto;
+    font-size: 0.6rem;
+    color: var(--dorado);
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ===== STATS ===== */
+  .stats {
+    padding: 80px 40px;
+    background: var(--azul-oscuro);
+  }
+  .stats-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0;
+  }
+  .stat-item {
+    text-align: center;
+    padding: 40px 24px;
+    border-right: 1px solid rgba(201,168,76,0.15);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--dorado);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--gris);
+    text-transform: uppercase;
+  }
+
+  /* ===== GARANTÍA ===== */
+  .garantia {
+    padding: 100px 40px;
+    background: var(--negro);
+  }
+  .garantia-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .garantia-icon-big {
+    font-size: 4rem;
+    margin-bottom: 24px;
+    display: block;
+  }
+  .garantia-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .garantia-text {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.55);
+    line-height: 1.9;
+    margin-bottom: 48px;
+  }
+
+  /* ===== FINAL CTA ===== */
+  .final-cta {
+    padding: 120px 40px;
+    background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--negro) 50%, var(--azul-oscuro) 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(30,77,123,0.15) 0%, transparent 50%);
+  }
+  .final-cta-content { position: relative; z-index: 1; }
+  .final-cta-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+  .final-cta-sub {
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.55);
+    margin-bottom: 48px;
+    letter-spacing: 1px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 40px;
+    background: var(--negro-suave);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dorado);
+    letter-spacing: 4px;
+  }
+  .footer-copy {
+    font-size: 0.65rem;
+    color: var(--gris);
+    letter-spacing: 1px;
+  }
+  .footer-tagline {
+    font-size: 0.65rem;
+    color: var(--gris);
+    letter-spacing: 2px;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ===== SCROLL ANIMATIONS ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    nav { padding: 16px 20px; }
+    .agitacion, .empatia, .solucion, .precio-section, .resenas, .garantia, .final-cta { padding: 70px 20px; }
+    .caja-card { padding: 40px 24px; }
+    footer { flex-direction: column; text-align: center; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.15); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Partículas -->
+<div class="particles" id="particles"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Sereno<span>cuidado íntimo masculino</span></div>
+  <ul>
+    <li><a href="#problema">Problema</a></li>
+    <li><a href="#solucion">Solución</a></li>
+    <li><a href="#caja">La Caja</a></li>
+    <li><a href="#resenas">Reseñas</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Cuidado Íntimo Masculino Premium</div>
+    <h1 class="hero-headline">
+      Aprende a cuidar tu zona íntima<br>
+      <span class="gold">en 30 días</span> con <span class="blue">Sereno</span>
+    </h1>
+    <p class="hero-subtitle">La solución que transforma tu higiene y confianza íntima desde cero</p>
+    <p class="hero-promise">Amplía tu bienestar · Aplica desde el primer uso</p>
+    <a href="#caja" class="cta-primary">Suscríbete ahora — $50.000 COP/mes</a>
+    <p class="hero-price-note">📦 Recibe tu <strong>Caja Sereno</strong> cada mes en tu puerta · Cancela cuando quieras</p>
+  </div>
+</section>
+
+<!-- AGITACIÓN -->
+<section class="agitacion" id="problema">
+  <p class="section-label reveal">Este producto es para ti si...</p>
+  <h2 class="section-title reveal">¿Te identificas con <span class="gold">alguna de estas</span> situaciones?</h2>
+  <p class="section-desc reveal">Miles de hombres enfrentan estos problemas sin saber que existe una solución simple, efectiva y accesible.</p>
+  <div class="problemas-grid">
+    <div class="problema-card reveal">
+      <span class="problema-icon">🔥</span>
+      <h3>Ardor e irritación constante</h3>
+      <p>Sientes molestias en la zona íntima después de actividad física o durante el día, sin saber por qué ni cómo solucionarlo.</p>
+    </div>
+    <div class="problema-card reveal">
+      <span class="problema-icon">😰</span>
+      <h3>Mal olor a pesar de bañarte</h3>
+      <p>Usas jabón regular de cuerpo en zonas sensibles y el olor regresa pocas horas después. Tu pH íntimo está desbalanceado.</p>
+    </div>
+    <div class="problema-card reveal">
+      <span class="problema-icon">🤔</span>
+      <h3>Nadie te enseñó a cuidarte</h3>
+      <p>La higiene íntima masculina nunca fue un tema. Usas lo que hay, sin saber que la piel íntima necesita atención especial.</p>
+    </div>
+    <div class="problema-card reveal">
+      <span class="problema-icon">😟</span>
+      <h3>Falta de confianza íntima</h3>
+      <p>Esas molestias afectan tu seguridad en momentos de intimidad. Quieres sentirte limpio, fresco y confiado en todo momento.</p>
+    </div>
+    <div class="problema-card reveal">
+      <span class="problema-icon">🧴</span>
+      <h3>Productos inadecuados</h3>
+      <p>El jabón de baño común altera el pH de zonas sensibles. Sin saberlo, empeorabas el problema con cada ducha.</p>
+    </div>
+    <div class="problema-card reveal">
+      <span class="problema-icon">💸</span>
+      <h3>No sabes qué comprar</h3>
+      <p>El mercado está lleno de opciones femeninas. No existía una solución pensada exclusivamente para el hombre moderno.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EMPATÍA -->
+<section class="empatia">
+  <div class="empatia-inner">
+    <p class="section-label reveal">Nuestra historia</p>
+    <blockquote class="empatia-quote reveal">
+      "Yo también estuve ahí. Sin saber cómo cuidarme, usando el mismo jabón para todo,<br>
+      <span class="highlight">pensando que era normal sentir esa incomodidad.</span><br>
+      Sereno nació de esa frustración."
+    </blockquote>
+    <div class="empatia-divider"></div>
+    <p class="empatia-author reveal">— Fundador de Sereno</p>
+  </div>
+</section>
+
+<!-- SOLUCIÓN -->
+<section class="solucion" id="solucion">
+  <div class="solucion-inner">
+    <p class="section-label reveal">La solución</p>
+    <h2 class="section-title reveal">Sereno: <span class="gold">ciencia y naturaleza</span><br>al servicio de tu bienestar íntimo</h2>
+    <p class="section-desc reveal">Una línea de productos formulados exclusivamente para la piel íntima masculina. Cada producto, cada ingrediente, cada fórmula — diseñada con un propósito.</p>
+    <div class="modulos-grid">
+      <div class="modulo-card reveal">
+        <div class="modulo-num">01</div>
+        <h3>pH Balanceado</h3>
+        <p>Fórmula con pH 5.5, específica para zonas íntimas masculinas. No reseca, no irrita.</p>
+      </div>
+      <div class="modulo-card reveal">
+        <div class="modulo-num">02</div>
+        <h3>Antibacterial Natural</h3>
+        <p>Ingredientes activos que eliminan bacterias causantes de mal olor sin agredir la flora natural.</p>
+      </div>
+      <div class="modulo-card reveal">
+        <div class="modulo-num">03</div>
+        <h3>Hidratación Íntima</h3>
+        <p>Complejo hidratante que protege y nutre la piel sensible de la zona íntima todo el día.</p>
+      </div>
+      <div class="modulo-card reveal">
+        <div class="modulo-num">04</div>
+        <h3>Frescura Duradera</h3>
+        <p>Tecnología de microencapsulación que libera frescura durante horas, incluso en actividad intensa.</p>
+      </div>
+      <div class="modulo-card reveal">
+        <div class="modulo-num">05</div>
+        <h3>Sin Químicos Agresivos</h3>
+        <p>Libre de parabenos, sulfatos y fragancias sintéticas. Puro, seguro, efectivo.</p>
+      </div>
+      <div class="modulo-card reveal">
+        <div class="modulo-num">06</div>
+        <h3>Dermatológicamente Probado</h3>
+        <p>Testado clínicamente en piel masculina sensible. Resultados desde el primer uso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAJA SERENO — PRECIO -->
+<section class="precio-section" id="caja">
+  <div class="caja-container">
+    <p class="section-label reveal" style="margin-bottom:40px">Oferta de suscripción</p>
+    <div class="caja-card reveal">
+      <div class="caja-badge-top">⚡ Oferta por tiempo limitado</div>
+      <div class="caja-nombre">CAJA SERENO</div>
+      <p class="caja-tagline">Tu ritual de cuidado íntimo mensual · Curado con precisión</p>
+
+      <div class="caja-items">
+        <div class="caja-item">
+          <div class="caja-item-dot"></div>
+          <div class="caja-item-text"><strong>Jabón íntimo Sereno</strong> — Fórmula pH 5.5</div>
+        </div>
+        <div class="caja-item">
+          <div class="caja-item-dot"></div>
+          <div class="caja-item-text"><strong>Gel refrescante</strong> — Post-actividad física</div>
+        </div>
+        <div class="caja-item">
+          <div class="caja-item-dot"></div>
+          <div class="caja-item-text"><strong>Crema hidratante</strong> — Protección diaria</div>
+        </div>
+        <div class="caja-item">
+          <div class="caja-item-dot"></div>
+          <div class="caja-item-text"><strong>Polvo antibacterial</strong> — Control de humedad</div>
+        </div>
+        <div class="caja-item">
+          <div class="caja-item-dot"></div>
+          <div class="caja-item-text"><strong>Guía de rutina</strong> — Protocolo de 7 días</div>
+        </div>
+        <div class="caja-item">
+          <div class="caja-item-dot"></div>
+          <div class="caja-item-text"><strong>Envío a domicilio</strong> — Todo Colombia</div>
+        </div>
+      </div>
+
+      <div class="precio-display">
+        <p class="precio-desde">Todo esto por solo</p>
+        <div class="precio-numero"><sup>$</sup>50.000</div>
+        <p class="precio-por">pesos colombianos · al mes</p>
+      </div>
+
+      <div class="cuenta-regresiva">
+        <div class="cuenta-item">
+          <span class="cuenta-num" id="horas">23</span>
+          <span class="cuenta-label">Horas</span>
+        </div>
+        <span class="cuenta-sep">:</span>
+        <div class="cuenta-item">
+          <span class="cuenta-num" id="minutos">47</span>
+          <span class="cuenta-label">Minutos</span>
+        </div>
+        <span class="cuenta-sep">:</span>
+        <div class="cuenta-item">
+          <span class="cuenta-num" id="segundos">59</span>
+          <span class="cuenta-label">Segundos</span>
+        </div>
+      </div>
+      <p style="font-size:0.65rem; color:var(--gris); margin-bottom: 32px; letter-spacing:1px;">⏰ Precio especial de lanzamiento — Solo quedan <strong style="color:var(--dorado)">12 cajas</strong> disponibles este mes</p>
+
+      <a href="#" class="cta-primary" style="font-size:0.8rem; padding:20px 56px;">📦 Quiero mi Caja Sereno</a>
+      <p class="garantia-note">Garantía de 30 días · Si no funciona, te devolvemos tu dinero · Sin preguntas</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRUEBA SOCIAL — RESEÑAS -->
+<section class="resenas" id="resenas">
+  <p class="section-label reveal">Prueba social</p>
+  <h2 class="section-title reveal">Lo que dicen quienes ya <span class="gold">viven la experiencia</span></h2>
+  <p class="section-desc reveal">+2.400 hombres ya transformaron su higiene íntima con Sereno. Estos son sus testimonios reales.</p>
+  <div class="resenas-grid">
+    <div class="resena-card reveal">
+      <div class="resena-stars">★★★★★</div>
+      <p class="resena-texto">"Llevaba años con ardor después de entrenar. Pensé que era normal. Desde que uso Sereno, esa incomodidad desapareció completamente en la primera semana. No puedo creer que no lo conocí antes."</p>
+      <div class="resena-divider"></div>
+      <div class="resena-autor">
+        <div class="resena-avatar">👤</div>
+        <div>
+          <p class="resena-nombre">Carlos M.</p>
+          <p class="resena-info">Medellín · Suscriptor hace 6 meses</p>
+        </div>
+        <span class="resena-verified">✓ Verificado</span>
+      </div>
+    </div>
+    <div class="resena-card reveal">
+      <div class="resena-stars">★★★★★</div>
+      <p class="resena-texto">"Mi pareja fue quien me lo recomendó y al principio dudé. Ahora los dos estamos felices con el cambio. La confianza íntima que me da este producto no tiene precio. La caja mensual es un lujo que vale cada peso."</p>
+      <div class="resena-divider"></div>
+      <div class="resena-autor">
+        <div class="resena-avatar">👤</div>
+        <div>
+          <p class="resena-nombre">Andrés P.</p>
+          <p class="resena-info">Bogotá · Suscriptor hace 4 meses</p>
+        </div>
+        <span class="resena-verified">✓ Verificado</span>
+      </div>
+    </div>
+    <div class="resena-card reveal">
+      <div class="resena-stars">★★★★★</div>
+      <p class="resena-texto">"Trabajo en construcción, sudo mucho. El problema del olor íntimo me generaba vergüenza. Con Sereno, al terminar la jornada me sigo sintiendo fresco. Es un cambio brutal en mi calidad de vida diaria."</p>
+      <div class="resena-divider"></div>
+      <div class="resena-autor">
+        <div class="resena-avatar">👤</div>
+        <div>
+          <p class="resena-nombre">Luis F.</p>
+          <p class="resena-info">Cali · Suscriptor hace 3 meses</p>
+        </div>
+        <span class="resena-verified">✓ Verificado</span>
+      </div>
+    </div>
+    <div class="resena-card reveal">
+      <div class="resena-stars">★★★★★</div>
+      <p class="resena-texto">"Tenía infecciones recurrentes que el médico me decía que eran por el tipo de jabón que usaba. Con Sereno en un mes desaparecieron. La formulación es seria, profesional. Se nota que fue diseñado por expertos."</p>
+      <div class="resena-divider"></div>
+      <div class="resena-autor">
+        <div class="resena-avatar">👤</div>
+        <div>
+          <p class="resena-nombre">Sebastián R.</p>
+          <p class="resena-info">Barranquilla · Suscriptor hace 5 meses</p>
+        </div>
+        <span class="resena-verified">✓ Verificado</span>
+      </div>
+    </div>
+    <div class="resena-card reveal">
+      <div class="resena-stars">★★★★★</div>
+      <p class="resena-texto">"La caja mensual es perfecta. Llega puntual, bien empacada, con todo lo que necesito. Es como tener un ritual de spa pero para lo que nadie te enseñó a cuidar. 50 mil pesos mensuales son la mejor inversión que he hecho en mí mismo."</p>
+      <div class="resena-divider"></div>
+      <div class="resena-autor">
+        <div class="resena-avatar">👤</div>
+        <div>
+          <p class="resena-nombre">Felipe G.</p>
+          <p class="resena-info">Bucaramanga · Suscriptor hace 7 meses</p>
+        </div>
+        <span class="resena-verified">✓ Verificado</span>
+      </div>
+    </div>
+    <div class="resena-card reveal">
+      <div class="resena-stars">★★★★★</div>
+      <p class="resena-texto">"Nunca pensé que hablaría de esto, pero merece decirse. Sereno me devolvió confianza que no sabía que había perdido. La piel íntima ahora se siente diferente, sana. Mi higiene mejoró 100% desde el primer mes."</p>
+      <div class="resena-divider"></div>
+      <div class="resena-autor">
+        <div class="resena-avatar">👤</div>
+        <div>
+          <p class="resena-nombre">Diego H.</p>
+          <p class="resena-info">Pereira · Suscriptor hace 2 meses</p>
+        </div>
+        <span class="resena-verified">✓ Verificado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <div class="stat-num">2.400+</div>
+      <p class="stat-label">Hombres impactados</p>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num">96%</div>
+      <p class="stat-label">Clientes satisfechos</p>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num">30</div>
+      <p class="stat-label">Días de garantía</p>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num">1er</div>
+      <p class="stat-label">Uso — resultados visibles</p>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTÍA -->
+<section class="garantia">
+  <div class="garantia-inner">
+    <p class="section-label reveal">Sin riesgo</p>
+    <span class="garantia-icon-big reveal">🛡️</span>
+    <h2 class="garantia-title reveal">Garantía <span style="color:var(--dorado)">total de 30 días</span></h2>
+    <p class="garantia-text reveal">Si por cualquier razón Sereno no transforma tu higiene íntima en los primeros 30 días, te devolvemos el 100% de tu dinero. Sin preguntas, sin trámites complicados. Solo escríbenos y listo. Esa es nuestra promesa — porque sabemos que cuando lo pruebes, no querrás dejarlo.</p>
+    <a href="#caja" class="cta-primary reveal">Probar sin riesgo →</a>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-content">
+    <p class="section-label reveal">Un solo paso</p>
+    <h2 class="final-cta-headline reveal">Tu bienestar íntimo<br><span style="color:var(--dorado)">comienza hoy.</span></h2>
+    <p class="final-cta-sub reveal">Únete a los +2.400 hombres que decidieron cuidarse de verdad.</p>
+    <a href="#" class="cta-primary reveal" style="font-size:0.8rem; padding:22px 60px;">📦 Suscribirme a la Caja Sereno — $50.000/mes</a>
+    <p style="margin-top:20px; font-size:0.65rem; color:var(--gris); letter-spacing:1px;" class="reveal">✓ Envío gratis · ✓ Cancela cuando quieras · ✓ Garantía 30 días</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SERENO</div>
+  <p class="footer-tagline">"La serenidad comienza en el cuidado propio"</p>
+  <p class="footer-copy">© 2026 Sereno · Cuidado Íntimo Masculino · Colombia</p>
+</footer>
+
+<script>
+  // Partículas
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 25; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (8 + Math.random() * 12) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+    container.appendChild(p);
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Cuenta regresiva
+  function updateTimer() {
+    const now = new Date();
+    const h = 23 - now.getHours();
+    const m = 59 - now.getMinutes();
+    const s = 59 - now.getSeconds();
+    document.getElementById('horas').textContent = String(h).padStart(2,'0');
+    document.getElementById('minutos').textContent = String(m).padStart(2,'0');
+    document.getElementById('segundos').textContent = String(s).padStart(2,'0');
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+</body>
+</html>
